@@ -1,14 +1,17 @@
-import React from "react";
+import React, {useEffect,useState} from "react";
 import Pad from "./Pad";
 import {bank1} from "./App"
 
 
-function Pads() {
+function Pads({power}) {
     const keypadCode = Object.keys(bank1);
 
+    const [audioName, setAudioName] = useState(null);
 
-    const playSound = e => {
-    }
+
+    const playSound = (e) => {
+      setAudioName(e.name);
+    };
 
 
     return (
@@ -20,10 +23,12 @@ function Pads() {
               id={pad+idx}
               key={pad+idx}
               handleClick={playSound}
-              element={pad} />
+              element={pad}
+              power ={power}
+             />
           );
         })}
-        <div id='display'> Show the name of current audio here </div>  
+        <div id='display'> {audioName} </div>  
       </div>
     )
   }
